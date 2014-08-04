@@ -11,7 +11,6 @@ var BlobConstants = azure.Constants.BlobConstants;
 var ServiceClient = azure.ServiceClient; 
 var CloudBlobClient = azure.CloudBlobClient; 
 
-npm install mongoose
 // Issued by Raspberry Pi 
 // https://[you put yours here].azure-mobile.net/api/photos 
 // With headers = "X-ZUMO-APPLICATION: [get the mobile servies app key from the portal]" 
