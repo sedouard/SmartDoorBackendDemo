@@ -12,7 +12,11 @@ var c_Timeout = 60;
 var DoorBell = schemas.DoorBell;
 var Photo = schemas.Photo;
 
-//Ensures connection to MongoDB and then executes callback
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+// 
+//  Ensures connection to MongoDB and then executes callback
+// 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 function dbConnectAndExecute(callback){
 	var connectionString = process.env.MongodbConnectionString;
 	var db = mongoose.connection;
@@ -34,6 +38,12 @@ function dbConnectAndExecute(callback){
         
     }
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+// 
+//  Entry point here 
+// 
+// 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 function doorbellListener() {
     //get the current unix time in seconds
     var date = new Date();
@@ -78,12 +88,12 @@ function doorbellListener() {
                				}
 
                				if(doorbell === null){
-               					console.log('Doorbell not found in DB, creating a new one');
-               					//take the entire body's json. Assuming it fits into this schema
-				                var entityObject = {
-				                	doorBellID : ringNotification.doorbellID;
-				                	photos : []
-				                }
+               				    console.log('Doorbell not found in DB, creating a new one');
+               				    //take the entire body's json. Assuming it fits into this schema
+               				    var entityObject = {
+               				        doorBellID : ringNotification.doorbellID,
+               				        photos : []
+               				    };
 
 				                entityObject.photos.push({
 				                	imageUrl : ringNotification,
@@ -114,6 +124,11 @@ function doorbellListener() {
                		});
                 }
 
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+				// 
+				//  Continues the 'loop' of polling the service bus until this task is over
+				// 
+				/////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
                 function continueListeningForMessages(){
 
                    //go back and listen for more message for the duration of this task
