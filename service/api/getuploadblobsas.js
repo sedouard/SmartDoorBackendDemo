@@ -33,14 +33,11 @@ exports.get = function(request, response) {
     console.log('containerName:' + containerName);
     console.log('accountName:' + accountName);
     console.log('accountKey:' + accountKey);
-    
+
     // Connect to the blob service 
     blobService = azure.createBlobService(accountName, 
                         accountKey, 
                         accountName + '.blob.core.windows.net'); 
- 
-    createContainer(); 
-    createPolicies(); 
  
     var sasResponse = GetSAS(); 
     return request.respond(201, sasResponse); 
