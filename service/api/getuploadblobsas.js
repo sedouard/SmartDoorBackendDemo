@@ -27,9 +27,13 @@ exports.get = function(request, response) {
     // These are part of "App Settings" in the configuration section 
     // of your service. Shouldn't be hard-coded into this Node.js script 
     containerName = request.service.config.appSettings.PhotoContainerName; 
-    accountName = request.service.config.appSettings.AccountName;  
-    accountKey = request.service.config.appSettings.AccountKey; 
- 
+    accountName = request.service.config.appSettings.StorageAccountName;  
+    accountKey = request.service.config.appSettings.StorageAccountKey; 
+    
+    console.log('containerName:' + containerName);
+    console.log('accountName:' + accountName);
+    console.log('accountKey:' + accountKey);
+    
     // Connect to the blob service 
     blobService = azure.createBlobService(accountName, 
                         accountKey, 
