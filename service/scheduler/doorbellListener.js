@@ -27,7 +27,7 @@ var Photo = schemas.Photo;
 // 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 function dbConnectAndExecute(callback){
-	var connectionString = process.env.MongodbConnectionString;
+	var mongoConnectionString = process.env.MongodbConnectionString;
 	var db = mongoose.connection;
 	//check if we are already connected to the db
     if(db.readyState == 1){
@@ -35,8 +35,8 @@ function dbConnectAndExecute(callback){
     } else{
 		//we aren't connected to the database
         db.connect(null);
-        var connectionString = nconf.get('SmartDoor.MongodbConnectionString');
-        mongoose.connect(connectionString);
+        var mongoConnectionString = nconf.get('SmartDoor.MongodbConnectionString');
+        mongoose.connect(mongoConnectionString);
         
         db.on('connect', function(){
             callback(null);
