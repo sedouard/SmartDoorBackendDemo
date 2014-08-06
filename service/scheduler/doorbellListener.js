@@ -103,9 +103,9 @@ function doorbellListener() {
                				    };
 
 				                entityObject.photos.push({
-				                	imageUrl : ringNotification.imageUrl,
+				                	url : ringNotification.imageUrl,
 				                	//set timestamp to current server time
-				                	timeStamp : ((new Date()).getTime()).toString()
+				                	timestamp : ((new Date()).getTime()).toString()
 				                })
 				                var doorbell = new DoorBell(entityObject);
 
@@ -114,9 +114,9 @@ function doorbellListener() {
                				else{
                					//we already have this device in the database. add a picture
                					doorbell.photos.push({
-				                	imageUrl : ringNotification.imageUrl,
+				                	url : ringNotification.imageUrl,
 				                	//set timestamp to current server time
-				                	timeStamp : ((new Date()).getTime()).toString()
+				                	timestamp : ((new Date()).getTime()).toString()
 				                });
                				}
 
