@@ -35,7 +35,6 @@ function dbConnectAndExecute(callback){
     } else{
 		//we aren't connected to the database
         db.connect(null);
-        var mongoConnectionString = nconf.get('SmartDoor.MongodbConnectionString');
         mongoose.connect(mongoConnectionString);
         
         db.on('connect', function(){
