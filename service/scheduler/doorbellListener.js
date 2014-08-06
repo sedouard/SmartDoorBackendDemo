@@ -80,7 +80,6 @@ function doorbellListener() {
                     console.log('recieved message from doorbell ' + ringNotification.doorbellID + ' with image link ' + ringNotification.imagePointer);
 
                    	//create database entry for this image
-
                		dbConnectAndExecute(function(err){
 
                			if(err){
@@ -88,7 +87,7 @@ function doorbellListener() {
                				return;
                			}
 
-               			DoorBell.findOne({ doorBellID: ringNotification.doorbellID}, function(err, doorbell){
+               			DoorBell.findOne({ doorBellID: ringNotification.doorBellID}, function(err, doorbell){
 
                				if(err){
                					return console.error(err);
