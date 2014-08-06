@@ -77,7 +77,7 @@ function doorbellListener() {
 
                     //we have recieved a message from a device
                     var ringNotification = JSON.parse(data.body);
-                    console.log('recieved message from doorbell ' + ringNotification.doorbellID + ' with image link ' + ringNotification.imagePointer);
+                    console.log('recieved message from doorbell ' + ringNotification.doorBellID + ' with image link ' + ringNotification.imageUrl);
 
                    	//create database entry for this image
                		dbConnectAndExecute(function(err){
