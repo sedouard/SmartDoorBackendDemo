@@ -98,12 +98,13 @@ function doorbellListener() {
                				    console.log('Doorbell not found in DB, creating a new one');
                				    //take the entire body's json. Assuming it fits into this schema
                				    var entityObject = {
-               				        doorBellID : ringNotification.doorbellID,
+               				        doorBellID : ringNotification.doorBellID,
                				        photos : []
                				    };
 
 				                entityObject.photos.push({
-				                	imageUrl : ringNotification,
+				                	imageUrl : ringNotification.imageUrl,
+				                	//set timestamp to current server time
 				                	timeStamp : ((new Date()).getTime()).toString()
 				                })
 				                var doorbell = new DoorBell(entityObject);
@@ -113,19 +114,20 @@ function doorbellListener() {
                				else{
                					//we already have this device in the database. add a picture
                					doorbell.photos.push({
-				                	imageUrl : ringNotification,
+				                	imageUrl : ringNotification.imageUrl,
+				                	//set timestamp to current server time
 				                	timeStamp : ((new Date()).getTime()).toString()
 				                });
                				}
 
                				//commit changes to db
                				doorbell.save(function (err, entity) {
-				                	if(err){
-				                		return console.error(err);
-				                	}
+			                	if(err){
+			                		return console.error(err);
+			                	}
 
-				                    console.log('sucessfully created new entity for: ' + entity);
-				                    return;
+			                    console.log('sucessfully created new entity for: ' + entity);
+			                    return;
 			                });
                			});
                		});
