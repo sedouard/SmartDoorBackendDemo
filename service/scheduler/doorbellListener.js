@@ -56,7 +56,7 @@ function doorbellListener() {
     var date = new Date();
     var time = date.getTime();
     var startSeconds = time / 1000;
-    console.log('debug: ' + connectionString);
+
     var sb = azure.createServiceBusService(connectionString);
  	listenForMessages(c_Timeout);
 
@@ -66,7 +66,7 @@ function doorbellListener() {
         console.log('Doorbell Listener Started for timeout: ' + seconds);
 
         //long poll the service bus for seconds
-        sb.receiveQueueMessage("smartdoor", { timeoutIntervalInS: seconds }, 
+        sb.receiveQueueMessage("smartdoorqueue", { timeoutIntervalInS: seconds }, 
             function(err, data) { 
 
                 if(err){
